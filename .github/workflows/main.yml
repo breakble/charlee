@@ -15,7 +15,6 @@ jobs:
         run: |
           export PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
           echo "pr_num=$PR_NUMBER" >> $GITHUB_ENV
-
      - name: Add Comment to Pull Request if Success
         if: ${{ success() }}
         uses: actions/github-script@v5
@@ -27,7 +26,6 @@ jobs:
             issue_number: ${{ env.pr_num }},
             body: 'Its Success'
             });
-
      - name: Add Comment to Pull Request if Failure
         if: ${{ failure() }}
         uses: actions/github-script@v5
